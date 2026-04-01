@@ -1,0 +1,68 @@
+name: Package Dynamic Plugins
+
+on:
+  push:
+    branches: [my]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_OPTIONS: --max-old-space-size=8192
+  REGISTRY: ghcr.io
+
+jobs:
+  package-plugins:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        plugin:
+          - path: plugins/infrawallet
+            image_suffix: infrawallet
+          - path: plugins/infrawallet-backend
+            image_suffix: infrawallet-backend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build all packages
+        run: yarn backstage-cli repo build --all
+
+      - name: Export dynamic plugin
+        working-directory: ${{ matrix.plugin.path }}
+        run: npx @red-hat-developer-hub/cli plugin export
+
+      - name: Login to ghcr.io
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Package and push OCI image
+        working-directory: ${{ matrix.plugin.path }}
+        env:
+          PLUGIN_IMAGE: ghcr.io/${{ github.repository_owner }}/${{ matrix.plugin.image_suffix }}
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          npx @red-hat-developer-hub/cli plugin package \
+            --tag "${PLUGIN_IMAGE}:${COMMIT_SHA}" \
+            --container-tool docker
+
+          docker push "${PLUGIN_IMAGE}:${COMMIT_SHA}"
+          docker tag "${PLUGIN_IMAGE}:${COMMIT_SHA}" "${PLUGIN_IMAGE}:latest"
+          docker push "${PLUGIN_IMAGE}:latest"
