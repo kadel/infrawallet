@@ -33,6 +33,7 @@
 | GitHub          |      ✅      |                      | Organization                          |
 | MongoDB Atlas   |      ✅      |                      | Organization                          |
 | Kubecost        |      ✅      |                      | Aggregator                            |
+| Anthropic       |      ✅      |                      | Organization                          |
 
 \*_The framework is designed to be extensible to support other cloud providers. Feel free to [contribute](./docs/contributing.md) to the project._
 
