@@ -47,6 +47,8 @@ jobs:
 
       - name: Export dynamic plugin
         working-directory: ${{ matrix.plugin.path }}
+        env:
+          CI: "false"
         run: npx @red-hat-developer-hub/cli plugin export
 
       - name: Login to ghcr.io
