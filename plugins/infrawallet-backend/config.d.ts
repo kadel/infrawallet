@@ -122,6 +122,21 @@ export interface Config {
            */
           token: string;
         }[];
+        anthropic?: {
+          name: string;
+          /**
+           * @visibility secret
+           */
+          apiKey: string;
+          tags?: string[];
+          filters?: [
+            {
+              type: string;
+              attribute: string;
+              pattern: string;
+            },
+          ];
+        }[];
         mock?: {
           name: string;
         }[];

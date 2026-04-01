@@ -37,6 +37,7 @@ nav:
       - Installation: getting-started/installation.md
       - Integrations:
           - Overview: getting-started/integrations/overview.md
+          - Anthropic: getting-started/integrations/anthropic.md
           - AWS: getting-started/integrations/aws.md
           - Azure: getting-started/integrations/azure.md
           - Confluent Cloud: getting-started/integrations/confluent-cloud.md
