@@ -110,6 +110,11 @@ const iconConfigs: Record<string, IconConfig> = {
     library: IconLibrary.SimpleIcons,
     color: '#4B9CD3',
   },
+  anthropic: {
+    icon: 'SiAnthropic',
+    library: IconLibrary.SimpleIcons,
+    color: '#191919',
+  },
 };
 
 export const ProviderIcon = memo(({ provider, size = 24 }: ProviderIconProps) => {

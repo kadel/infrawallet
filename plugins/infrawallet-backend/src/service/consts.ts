@@ -1,3 +1,4 @@
+import { AnthropicClient } from '../cost-clients/AnthropicClient';
 import { AwsClient } from '../cost-clients/AwsClient';
 import { AzureClient } from '../cost-clients/AzureClient';
 import { ConfluentClient } from '../cost-clients/ConfluentClient';
@@ -24,6 +25,7 @@ export const enum CLOUD_PROVIDER {
   ELASTIC_CLOUD = 'ElasticCloud',
   GITHUB = 'GitHub',
   KUBECOST = 'Kubecost',
+  ANTHROPIC = 'Anthropic',
   CUSTOM = 'Custom',
   MOCK = 'Mock',
 }
@@ -40,6 +42,7 @@ export const COST_CLIENT_MAPPINGS: {
   elasticcloud: ElasticCloudClient,
   github: GitHubClient,
   kubecost: KubecostClient,
+  anthropic: AnthropicClient,
   custom: CustomProviderClient,
   mock: MockClient,
 };
@@ -78,6 +81,7 @@ export const DEFAULT_TAGS_CACHE_TTL: {
   [CLOUD_PROVIDER.ELASTIC_CLOUD]: 1 * 60 * 60 * 1000,
   [CLOUD_PROVIDER.GITHUB]: 1 * 60 * 60 * 1000,
   [CLOUD_PROVIDER.KUBECOST]: 1 * 60 * 60 * 1000,
+  [CLOUD_PROVIDER.ANTHROPIC]: 1 * 60 * 60 * 1000,
   [CLOUD_PROVIDER.CUSTOM]: 1,
   [CLOUD_PROVIDER.MOCK]: 0, // NOTE: 0 means never expired!
 };
@@ -94,6 +98,7 @@ export const DEFAULT_COSTS_CACHE_TTL: {
   [CLOUD_PROVIDER.ELASTIC_CLOUD]: 2 * 60 * 60 * 1000,
   [CLOUD_PROVIDER.GITHUB]: 2 * 60 * 60 * 1000,
   [CLOUD_PROVIDER.KUBECOST]: 2 * 60 * 60 * 1000,
+  [CLOUD_PROVIDER.ANTHROPIC]: 2 * 60 * 60 * 1000,
   [CLOUD_PROVIDER.CUSTOM]: 1, // do not cache custom costs since they are in the plugin database
   [CLOUD_PROVIDER.MOCK]: 0, // NOTE: 0 means never expired!
 };
@@ -117,6 +122,7 @@ export const NUMBER_OF_MONTHS_FETCHING_HISTORICAL_COSTS: {
   [CLOUD_PROVIDER.ELASTIC_CLOUD]: 11,
   [CLOUD_PROVIDER.GITHUB]: 12,
   [CLOUD_PROVIDER.KUBECOST]: 3,
+  [CLOUD_PROVIDER.ANTHROPIC]: 12,
   [CLOUD_PROVIDER.CUSTOM]: 0, // NOT USED
   [CLOUD_PROVIDER.MOCK]: 0, // NOT USED
 };
