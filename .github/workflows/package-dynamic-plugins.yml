@@ -39,6 +39,9 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Generate type declarations
+        run: yarn tsc:full
+
       - name: Build all packages
         run: yarn backstage-cli repo build --all
 
