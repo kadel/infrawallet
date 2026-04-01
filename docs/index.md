@@ -4,7 +4,7 @@
 
 InfraWallet is a powerful [Backstage](https://backstage.io/) plugin designed to help organizations gain full visibility and control over their cloud costs. By aggregating, categorizing, and analyzing costs across multiple cloud providers, InfraWallet empowers teams to make informed financial decisions and optimize their cloud spending.
 
-With its seamless integration into Backstage, InfraWallet provides a unified interface for managing cloud costs, enabling teams to collaborate effectively. Whether you're tracking costs for AWS, Azure, Google Cloud, or other providers, InfraWallet simplifies cost management with its intuitive features and flexible configuration options.
+With its seamless integration into Backstage, InfraWallet provides a unified interface for managing cloud costs, enabling teams to collaborate effectively. Whether you're tracking costs for AWS, Azure, Google Cloud, Anthropic, or other providers, InfraWallet simplifies cost management with its intuitive features and flexible configuration options.
 
 ![InfraWallet](images/iw_demo.gif)
 
