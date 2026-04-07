@@ -1,13 +1,13 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: electrolux-backstage
-  description: An example of a Backstage application.
-  # Example for optional annotations
-  # annotations:
-  #   github.com/project-slug: backstage/backstage
-  #   backstage.io/techdocs-ref: dir:.
+  name: infrawallet
+  description: Backstage plugin that shows cloud costs
+  tags:
+   - node
+   - plugin
+   - backstage
 spec:
   type: website
-  owner: john@example.com
+  owner: user:kadel
   lifecycle: experimental
